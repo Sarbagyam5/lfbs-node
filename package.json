@@ -1,0 +1,30 @@
+{
+  "name": "lfbs-nodejs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "homepage": "https://github.com/Sarbagyam5/lfbs-node#readme",
+  "bugs": {
+    "url": "https://github.com/Sarbagyam5/lfbs-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sarbagyam5/lfbs-node.git"
+  },
+  "license": "ISC",
+  "author": "Sarbagya Ghimire",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
