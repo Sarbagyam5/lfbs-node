@@ -42,7 +42,11 @@ async function getAuthUser(req, res) {
 }
 
 const logout = (req, res) => {
-  res.clearCookie("authToken");
+  res.clearCookie("authToken", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
 
   res.json({ message: "Logout successful." });
 };
