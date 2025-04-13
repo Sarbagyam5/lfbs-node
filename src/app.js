@@ -14,7 +14,7 @@ const port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
   res.json({
-    version: "1.0.2",
+    version: "1.0.3",
     name: "LFBS",
     author: "Sarbagya Ghimire",
   });

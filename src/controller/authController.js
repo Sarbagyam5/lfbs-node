@@ -41,4 +41,10 @@ async function getAuthUser(req, res) {
   }
 }
 
-export { login, register, getAuthUser };
+const logout = (req, res) => {
+  res.clearCookie("authToken");
+
+  res.json({ message: "Logout successful." });
+};
+
+export { login, register, getAuthUser, logout };
