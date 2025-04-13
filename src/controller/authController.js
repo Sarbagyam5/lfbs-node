@@ -31,4 +31,14 @@ async function register(req, res) {
     res.status(400).send(error.message);
   }
 }
-export { login, register };
+
+async function getAuthUser(req, res) {
+  try {
+    const user = res.user;
+    res.json(user);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
+export { login, register, getAuthUser };
