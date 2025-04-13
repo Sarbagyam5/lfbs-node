@@ -13,7 +13,11 @@ app.use(express.json());
 const port = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
-  res.send("hello sathi");
+  res.json({
+    version: "1.0.2",
+    name: "LFBS",
+    author: "Sarbagya Ghimire",
+  });
 });
 
 app.use(

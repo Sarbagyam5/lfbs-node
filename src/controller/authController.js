@@ -7,7 +7,12 @@ async function login(req, res) {
     if (!data.username) return res.status(400).send("Username is required");
     if (!data.password) return res.status(400).send("Password is required");
     const user = await authServices.login(data);
-    res.cookie("authToken", user.token);
+    res.cookie("authToken", user.token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
     res.json({
       status: "Success",
       username: user.formatedUser.username,
