@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 function generateJWT(data) {
-  return jwt.sign(data, process.env.JWT_SECRETE);
+  return jwt.sign(data.id, process.env.JWT_SECRETE);
 }
 
 function verifyToken(data) {

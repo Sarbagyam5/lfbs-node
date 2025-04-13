@@ -17,7 +17,7 @@ async function login(data) {
     const formatedUser = formatUser(authUser);
     const token = generateJWT(formatedUser);
 
-    return { token: token, user: formatedUser };
+    return { token, formatedUser };
   } catch (error) {
     throw new Error(error.message);
   }
