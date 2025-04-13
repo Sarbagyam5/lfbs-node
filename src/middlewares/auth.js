@@ -11,7 +11,7 @@ function auth(req, res, next) {
     const verifyAuthToken = verifyToken(token);
 
     if (!verifyAuthToken) return res.status(401).send("Unauthorized");
-    res.user = verifyAuthToken;
+    req.user = verifyAuthToken;
     next();
   } catch (error) {
     return res.status(401).send("Unauthorized: Invalid token");

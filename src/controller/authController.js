@@ -34,7 +34,7 @@ async function register(req, res) {
 
 async function getAuthUser(req, res) {
   try {
-    const user = res.user;
+    const user = req.user;
     res.json(user);
   } catch (error) {
     res.status(400).send(error.message);
