@@ -9,7 +9,7 @@ async function login(req, res) {
     const user = await authServices.login(data);
     res.cookie("authToken", user.token, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
