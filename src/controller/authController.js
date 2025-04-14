@@ -10,7 +10,7 @@ async function login(req, res) {
     res.cookie("authToken", user.token, {
       httpOnly: true,
       secure: true,
-      sameSite: "None",
+      sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000,
     });
     res.json({
@@ -45,7 +45,7 @@ const logout = (req, res) => {
   res.clearCookie("authToken", {
     httpOnly: true,
     secure: true,
-    sameSite: "None",
+    sameSite: "none",
   });
 
   res.json({ message: "Logout successful." });
