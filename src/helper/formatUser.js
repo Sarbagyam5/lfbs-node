@@ -13,6 +13,7 @@ function formatUser(data) {
     id: data?._id,
     name: data?.name,
     username: data?.username,
+    address: data?.address,
     email: data?.email,
     phone: data?.phone,
     mobile: data?.mobile,
