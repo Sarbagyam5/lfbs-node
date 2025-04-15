@@ -1,4 +1,4 @@
-import formatUser from "../helper/formatUser.js";
+import { formatUser } from "../helper/formatUser.js";
 import authServices from "../services/authServices.js";
 
 async function login(req, res) {
@@ -11,7 +11,6 @@ async function login(req, res) {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      maxAge: 24 * 60 * 60 * 1000,
     });
     res.json({
       status: "Success",

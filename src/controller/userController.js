@@ -1,4 +1,4 @@
-import formatUser from "../helper/formatUser.js";
+import { formatUser, formatUserForToken } from "../helper/formatUser.js";
 import userServices from "../services/userServices.js";
 
 async function updateUserInfo(req, res) {

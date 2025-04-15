@@ -1,4 +1,4 @@
-import formatUser from "../helper/formatUser.js";
+import { formatUserForToken } from "../helper/formatUser.js";
 import User from "../models/User.js";
 import { generateJWT } from "../utils/jwt.js";
 import { comparePassword, hashPassword } from "../utils/password.js";
@@ -14,7 +14,7 @@ async function login(data) {
     const isMatch = await comparePassword(data.password, authUser.password);
     if (!isMatch) throw new Error("Password doesnt match");
 
-    const formatedUser = formatUser(authUser);
+    const formatedUser = formatUserForToken(authUser);
     const token = generateJWT(formatedUser);
 
     return { token, formatedUser };

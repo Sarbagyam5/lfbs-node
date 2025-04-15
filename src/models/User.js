@@ -12,19 +12,36 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
   },
+  mobile: {
+    type: Number,
+  },
+  phone: {
+    type: Number,
+  },
   password: {
     type: String,
     required: [true, "Password is required"],
   },
-  createAt: {
-    type: Date,
-    default: Date.now(),
+  pan: {
+    type: Number,
   },
+  status: {
+    type: String,
+    default: "Active",
+  },
+
   role: {
     type: [String],
     required: true,
   },
   profilePictureUrl: String,
+  createAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  modifiedAt: {
+    type: Date,
+  },
 });
 
 const User = mongoose.model("User", userSchema);

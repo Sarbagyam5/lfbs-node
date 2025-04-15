@@ -5,10 +5,14 @@ async function updateUserInfo(file, data, id) {
   try {
     if (file) {
       const [image] = await uploadFile([file]);
-      data = { ...data, profilePictureUrl: image.url };
+      data = { ...data, profilePictureUrl: image.url, modifiedAt: Date.now() };
       return await User.findByIdAndUpdate(id, data, { new: true });
     }
-    return await User.findByIdAndUpdate(id, data, { new: true });
+    return await User.findByIdAndUpdate(
+      id,
+      { ...data, modifiedAt: Date.now() },
+      { new: true }
+    );
   } catch (error) {
     throw { status: 400, message: "cant update informations" };
   }
