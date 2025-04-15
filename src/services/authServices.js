@@ -7,9 +7,7 @@ async function login(data) {
   try {
     const authUser = await User.findOne({ username: data.username });
 
-    if (!authUser) {
-      throw { status: 401, message: "Incorrect username" };
-    }
+    if (!authUser) throw { status: 401, message: "Incorrect username" };
 
     const isMatch = await comparePassword(data.password, authUser.password);
     if (!isMatch) throw { status: 401, message: "Incorrect password" };
@@ -19,7 +17,10 @@ async function login(data) {
 
     return { token, formatedUser };
   } catch (error) {
-    throw new Error(error.message);
+    throw {
+      status: error.status || 500,
+      message: error.message || "Internal Server Error",
+    };
   }
 }
 
