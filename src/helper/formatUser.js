@@ -31,6 +31,7 @@ function formatUserForToken(data) {
     name: data?.name,
     username: data?.username,
     email: data?.email,
+    profilePictureUrl: data?.profilePictureUrl,
     role: data?.role,
   };
 }
