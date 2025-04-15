@@ -14,12 +14,12 @@ async function uploadFile(files) {
           },
           (error, data) => {
             if (error) return reject(error);
-
             resolve(data);
           }
         )
         .end(file.buffer);
     });
+
     uploadResults.push(result);
   }
   return uploadResults;

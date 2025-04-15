@@ -5,6 +5,7 @@ function formatUser(data) {
     username: data.username,
     email: data.email,
     role: data.role,
+    profilePictureUrl: data.profilePictureUrl,
   };
 }
 export default formatUser;

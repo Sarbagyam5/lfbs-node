@@ -1,6 +1,7 @@
 import express from "express";
-import dotenv, { parse } from "dotenv";
+import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import connectDb from "./config/database.js";
 import cors from "cors";
 import connectCloudinary from "./config/cloudinar.js";
@@ -34,7 +35,8 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/auth", upload.single("image"), authRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", upload.single("image"), userRoutes);
 
 const port = process.env.PORT || 5000;
 
