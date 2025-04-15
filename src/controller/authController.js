@@ -17,7 +17,7 @@ async function login(req, res) {
       username: user.formatedUser.username,
     });
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(error.status).send(error.message);
   }
 }
 

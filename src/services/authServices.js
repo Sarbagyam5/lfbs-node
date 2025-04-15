@@ -8,11 +8,11 @@ async function login(data) {
     const authUser = await User.findOne({ username: data.username });
 
     if (!authUser) {
-      throw new Error("Username doesnt match");
+      throw { status: 401, message: "Incorrect username" };
     }
 
     const isMatch = await comparePassword(data.password, authUser.password);
-    if (!isMatch) throw new Error("Password doesnt match");
+    if (!isMatch) throw { status: 401, message: "Incorrect password" };
 
     const formatedUser = formatUserForToken(authUser);
     const token = generateJWT(formatedUser);
