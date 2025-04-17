@@ -1,4 +1,6 @@
+import formatAcademicYearData from "../../helper/formatAcademicYearData.js";
 import AcademicYearService from "../../services/AcademicServices/academicYearService.js";
+
 const addAcademicYear = async (req, res) => {
   const data = req.body;
   if (!data.name) return res.status(400).send("Academic year is required");
@@ -7,7 +9,7 @@ const addAcademicYear = async (req, res) => {
 
   try {
     const academicYear = await AcademicYearService.addAcademicYear(data);
-    res.status(academicYear.status).json(academicYear.data);
+    res.status(academicYear.status).json(formatAcademicYearData(academicYear));
   } catch (error) {
     res
       .status(error.status || 400)
@@ -18,11 +20,16 @@ const addAcademicYear = async (req, res) => {
 const getAcademicYears = async (req, res) => {
   try {
     const academicYears = await AcademicYearService.getAcademicYears();
-    res.json(academicYears);
+    const formatedAcademicYears = academicYears.map((academicYear) =>
+      formatAcademicYearData(academicYear)
+    );
+    res.json(formatedAcademicYears);
   } catch (error) {
     res
-      .status(error.status || 400)
-      .send(error.message || "Can't get the academic years");
+      .status(error.status || 500)
+      .send(
+        error.message || "An error occurred while retrieving academic years."
+      );
   }
 };
 
@@ -39,7 +46,7 @@ const updateAcademicYearById = async (req, res) => {
       endDate,
       isCurrent,
     });
-    res.json(academicYear);
+    res.json(formatAcademicYearData(academicYear));
   } catch (error) {
     res
       .status(error.status || 400)
