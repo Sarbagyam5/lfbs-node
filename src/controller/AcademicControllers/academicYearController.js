@@ -1,5 +1,4 @@
-import academicYearService from "../../services/AcademicServices/AcademicYearService.js";
-
+import AcademicYearService from "../../services/AcademicServices/AcademicYearService";
 const addAcademicYear = async (req, res) => {
   const data = req.body;
   if (!data.name) return res.status(400).send("Academic year is required");
@@ -7,7 +6,7 @@ const addAcademicYear = async (req, res) => {
   if (!data.endDate) return res.status(400).send("Ending date is required");
 
   try {
-    const academicYear = await academicYearService.addAcademicYear(data);
+    const academicYear = await AcademicYearService.addAcademicYear(data);
     res.status(academicYear.status).json(academicYear.data);
   } catch (error) {
     res
@@ -18,7 +17,7 @@ const addAcademicYear = async (req, res) => {
 
 const getAcademicYears = async (req, res) => {
   try {
-    const academicYears = await academicYearService.getAcademicYears();
+    const academicYears = await AcademicYearService.getAcademicYears();
     res.json(academicYears);
   } catch (error) {
     res
@@ -34,7 +33,7 @@ const updateAcademicYearById = async (req, res) => {
   if (!name && !startDate && !endDate && !isCurrent)
     return res.status(400).send("Required data is missing");
   try {
-    const academicYear = await academicYearService.updateAcademicYearById(id, {
+    const academicYear = await AcademicYearService.updateAcademicYearById(id, {
       name,
       startDate,
       endDate,
