@@ -1,4 +1,4 @@
-import AcademicYearService from "../../services/AcademicServices/AcademicYearService";
+import AcademicYearService from "../../services/AcademicServices/AcademicYearService.js";
 const addAcademicYear = async (req, res) => {
   const data = req.body;
   if (!data.name) return res.status(400).send("Academic year is required");
