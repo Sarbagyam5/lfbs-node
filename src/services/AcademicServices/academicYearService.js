@@ -39,4 +39,21 @@ async function updateAcademicYearById(id, data) {
     return { status: 400, message: "Cant update academic year" };
   }
 }
-export default { addAcademicYear, getAcademicYears, updateAcademicYearById };
+
+async function deleteAcademicYearById(id, data) {
+  const existingAcademicYear = await AcademicYear.findById(id);
+
+  if (!existingAcademicYear)
+    return { status: 404, message: "Academic year doesn't exist" };
+  try {
+    return await AcademicYear.findByIdAndDelete(id);
+  } catch (error) {
+    return { status: 400, message: "Cant delete academic year" };
+  }
+}
+export default {
+  addAcademicYear,
+  getAcademicYears,
+  updateAcademicYearById,
+  deleteAcademicYearById,
+};

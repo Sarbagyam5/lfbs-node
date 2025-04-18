@@ -6,18 +6,18 @@ function formatAcademicYearData(data) {
   console.log(data);
 
   function adtoBsConverter(date) {
-    if (!date) return "";
+    if (!date) return "-";
     const adDate = new Date(date);
-    if (isNaN(adDate)) return "";
+    if (isNaN(adDate)) return "-";
 
     const datePart = adDate.toISOString().split("T")[0];
     return adToBs(datePart);
   }
 
   function gmtToNepaliTimeConverter(date) {
-    if (!date) return null;
+    if (!date) return "-";
     const adDate = new Date(date);
-    if (isNaN(adDate)) return null;
+    if (isNaN(adDate)) return "-";
 
     adDate.setMinutes(adDate.getMinutes() + 345);
     const hours = adDate.getHours().toString().padStart(2, "0");

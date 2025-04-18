@@ -55,4 +55,22 @@ const updateAcademicYearById = async (req, res) => {
   }
 };
 
-export { addAcademicYear, getAcademicYears, updateAcademicYearById };
+const deleteAcademicYearById = async (req, res) => {
+  const id = req.params.id;
+  if (!id) return res.status(400).send("Id is required");
+  try {
+    const academicYear = await AcademicYearService.deleteAcademicYearById(id);
+    res.json("Deleted Successfully");
+  } catch (error) {
+    res
+      .status(error.status || 400)
+      .send(error.message || "Can't delete the academic years");
+  }
+};
+
+export {
+  addAcademicYear,
+  getAcademicYears,
+  updateAcademicYearById,
+  deleteAcademicYearById,
+};
