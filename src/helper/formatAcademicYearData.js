@@ -1,36 +1,41 @@
+import { adToBs } from "@sbmdkl/nepali-date-converter";
+
 function formatAcademicYearData(data) {
-  const createdDate = new Date(data?.createdAt);
-  const createdNepaliDateTime = createdDate.toLocaleString("en-US", {
-    timeZone: "Asia/Kathmandu",
-  });
+  function adtoBsConverter(date) {
+    if (!date) return null;
+    const adDate = new Date(date);
+    if (isNaN(adDate)) return null;
 
-  const startDate = new Date(data?.startDate);
-  const startNepaliDate = startDate.toDateString("en-US", {
-    timeZone: "Asia/Kathmandu",
-  });
-
-  const endDate = new Date(data?.endDate);
-  const endNepaliDate = endDate.toDateString("en-US", {
-    timeZone: "Asia/Kathmandu",
-  });
-
-  const modifiedAt = data?.modifiedAt;
-  let modifiedNepaliDateTime = null;
-  if (modifiedAt && modifiedAt.length > 0) {
-    const lastModifiedAt = modifiedAt[modifiedAt.length - 1];
-    const modifiedDate = new Date(lastModifiedAt);
-    modifiedNepaliDateTime = modifiedDate.toLocaleString("en-US", {
-      timeZone: "Asia/Kathmandu",
-    });
+    const datePart = adDate.toISOString().split("T")[0];
+    return adToBs(datePart); // returns object like { bsYear, bsMonth, bsDate }
   }
+
+  function gmtToNepaliTimeConverter(date) {
+    if (!date) return null;
+    const adDate = new Date(date);
+    if (isNaN(adDate)) return null;
+
+    adDate.setMinutes(adDate.getMinutes() + 345); // Convert to NST
+    const hours = adDate.getHours().toString().padStart(2, "0");
+    const minutes = adDate.getMinutes().toString().padStart(2, "0");
+    const seconds = adDate.getSeconds().toString().padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
   return {
-    id: data.id,
-    name: data.name,
-    startDate: startNepaliDate,
-    endDate: endNepaliDate,
-    isCurrent: data.isCurrent,
-    createdAt: createdNepaliDateTime,
-    modifiedAt: modifiedNepaliDateTime,
+    id: data?.id,
+    name: data?.name,
+    startDate: adtoBsConverter(data?.startDate),
+    endDate: adtoBsConverter(data?.endDate),
+    isCurrent: data?.isCurrent ?? false,
+    createdAt: ` ${adtoBsConverter(
+      data?.createdAt
+    )}, ${gmtToNepaliTimeConverter(data?.createdAt)}`,
+    modifiedAt: `${adtoBsConverter(
+      data?.modifiedAt
+    )}, ${gmtToNepaliTimeConverter(
+      data?.modifiedAt[data?.modifiedAt.length - 1]
+    )}`,
   };
 }
 
