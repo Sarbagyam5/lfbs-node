@@ -2,15 +2,13 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const { adToBs } = require("@sbmdkl/nepali-date-converter");
 
-// import { adToBs } from "@sbmdkl/nepali-date-converter";
-
 function formatAcademicYearData(data) {
   console.log(data);
 
   function adtoBsConverter(date) {
-    if (!date) return null;
+    if (!date) return "";
     const adDate = new Date(date);
-    if (isNaN(adDate)) return null;
+    if (isNaN(adDate)) return "";
 
     const datePart = adDate.toISOString().split("T")[0];
     return adToBs(datePart);
