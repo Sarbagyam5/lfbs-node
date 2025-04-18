@@ -1,4 +1,4 @@
-const { adToBs } = await import("@sbmdkl/nepali-date-converter");
+import { adToBs } from "@sbmdkl/nepali-date-converter";
 
 function formatAcademicYearData(data) {
   function adtoBsConverter(date) {
