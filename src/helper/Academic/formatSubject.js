@@ -1,8 +1,9 @@
 function formatSubject(data) {
+  console.log("");
   return {
     id: data?._id,
     name: data?.name,
-    shortname: data?.shortName,
+    shortName: data?.shortName,
   };
 }
 
