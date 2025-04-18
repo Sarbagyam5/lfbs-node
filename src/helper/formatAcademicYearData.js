@@ -1,6 +1,12 @@
-import { adToBs } from "@sbmdkl/nepali-date-converter";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const { adToBs } = require("@sbmdkl/nepali-date-converter");
+
+// import { adToBs } from "@sbmdkl/nepali-date-converter";
 
 function formatAcademicYearData(data) {
+  console.log(data);
+
   function adtoBsConverter(date) {
     if (!date) return null;
     const adDate = new Date(date);
@@ -28,13 +34,13 @@ function formatAcademicYearData(data) {
     startDate: adtoBsConverter(data?.startDate),
     endDate: adtoBsConverter(data?.endDate),
     isCurrent: data?.isCurrent ?? false,
-    createdAt: ` ${adtoBsConverter(
+    createdAt: `${adtoBsConverter(data?.createdAt)}, ${gmtToNepaliTimeConverter(
       data?.createdAt
-    )}, ${gmtToNepaliTimeConverter(data?.createdAt)}`,
+    )}`,
     modifiedAt: `${adtoBsConverter(
       data?.modifiedAt
     )}, ${gmtToNepaliTimeConverter(
-      data?.modifiedAt[data?.modifiedAt.length - 1]
+      data?.modifiedAt?.[data?.modifiedAt?.length - 1]
     )}`,
   };
 }
