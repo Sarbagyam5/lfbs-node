@@ -1,4 +1,4 @@
-import { adToBs } from "@sbmdkl/nepali-date-converter";
+const { adToBs } = await import("@sbmdkl/nepali-date-converter");
 
 function formatAcademicYearData(data) {
   function adtoBsConverter(date) {
@@ -7,7 +7,7 @@ function formatAcademicYearData(data) {
     if (isNaN(adDate)) return null;
 
     const datePart = adDate.toISOString().split("T")[0];
-    return adToBs(datePart); // returns object like { bsYear, bsMonth, bsDate }
+    return adToBs(datePart);
   }
 
   function gmtToNepaliTimeConverter(date) {
@@ -15,7 +15,7 @@ function formatAcademicYearData(data) {
     const adDate = new Date(date);
     if (isNaN(adDate)) return null;
 
-    adDate.setMinutes(adDate.getMinutes() + 345); // Convert to NST
+    adDate.setMinutes(adDate.getMinutes() + 345);
     const hours = adDate.getHours().toString().padStart(2, "0");
     const minutes = adDate.getMinutes().toString().padStart(2, "0");
     const seconds = adDate.getSeconds().toString().padStart(2, "0");
