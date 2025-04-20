@@ -14,6 +14,7 @@ import {
 } from "../controller/AcademicControllers/subjectController.js";
 import {
   addTeacher,
+  deleteTeacherById,
   getAllTeacher,
 } from "../controller/AcademicControllers/teacherController.js";
 
@@ -32,5 +33,6 @@ router.delete("/subjects/:id", auth, deleteSubjectById);
 //Teacher
 router.post("/teachers", auth, addTeacher);
 router.get("/teachers", auth, getAllTeacher);
+router.delete("/teachers/:id", auth, deleteTeacherById);
 
 export default router;

@@ -20,4 +20,15 @@ async function getAllTeacher() {
     throw { status: 500, message: "Server doesnt respond the teacher" };
   }
 }
-export default { addTeacher, getAllTeacher };
+
+async function deleteTeacherById(id) {
+  const isUser = await Teacher.findById(id);
+  if (!isUser)
+    throw { status: 400, message: "No Teacher with the given Id found" };
+  try {
+    return await Teacher.findByIdAndDelete(id);
+  } catch (error) {
+    throw { status: 500, message: "Server error" };
+  }
+}
+export default { addTeacher, getAllTeacher, deleteTeacherById };

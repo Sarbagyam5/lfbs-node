@@ -39,5 +39,15 @@ async function getAllTeacher(req, res) {
       .send(error.message || "Couldn't Get teachers");
   }
 }
+async function deleteTeacherById(req, res) {
+  const id = req.params.id;
+  if (!id) return res.status(400).send("Id is required");
+  try {
+    await teacherService.deleteTeacherById(id);
+    res.send("Teacher deleted sucessfull");
+  } catch (error) {
+    res.status(error.status || 500).send(error.message || "Couldn't Delete");
+  }
+}
 
-export { addTeacher, getAllTeacher };
+export { addTeacher, getAllTeacher, deleteTeacherById };
