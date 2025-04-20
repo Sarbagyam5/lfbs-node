@@ -1,3 +1,4 @@
+import { formatTeacher } from "../../helper/Academic/formatTeacher.js";
 import teacherService from "../../services/AcademicServices/teacherService.js";
 
 async function addTeacher(req, res) {
@@ -16,9 +17,12 @@ async function addTeacher(req, res) {
   if (!data.phoneNumber)
     return res.status(400).send("Phone number is required");
   if (!data.email) return res.status(400).send("Email is required");
+  if (!data.citizenshipNumber)
+    return res.status(400).send("Citizenship number is required");
+
   try {
-    const response = await teacherService.addTeacher(data, file);
-    res.json(response);
+    const response = await teacherService.addTeacher(data, file || "");
+    res.json(formatTeacher(response));
   } catch (error) {
     res.status(error.status || 500).send(error.message || "Server Error");
   }

@@ -3,8 +3,12 @@ import uploadFile from "../../utils/file.js";
 
 async function addTeacher(data, image) {
   try {
-    const [file] = uploadFile([image]);
-    return await Teacher.create({ ...data, imageUrL: file.url });
+    console.log(image);
+    if (image.length > 0) {
+      const [file] = uploadFile([image]);
+      return await Teacher.create({ ...data, imageUrL: file.url });
+    }
+    return await Teacher.create(data);
   } catch (error) {
     throw error.message;
   }

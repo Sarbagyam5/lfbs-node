@@ -10,7 +10,7 @@ const teacherSchema = new mongoose.Schema({
   sex: { type: String, required: true },
   phoneNumber: { type: String, required: true },
   email: { type: String, required: true },
-  citizenshipNumber: String,
+  citizenshipNumber: { type: String, required: true },
   municipalityVdc: String,
   state: String,
   company: String,
