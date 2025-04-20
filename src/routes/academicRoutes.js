@@ -12,7 +12,10 @@ import {
   getAllSubject,
   updateSubjectById,
 } from "../controller/AcademicControllers/subjectController.js";
-import { addTeacher } from "../controller/AcademicControllers/teacherController.js";
+import {
+  addTeacher,
+  getAllTeacher,
+} from "../controller/AcademicControllers/teacherController.js";
 
 const router = express.Router();
 
@@ -28,5 +31,6 @@ router.put("/subjects/:id", auth, updateSubjectById);
 router.delete("/subjects/:id", auth, deleteSubjectById);
 //Teacher
 router.post("/teachers", auth, addTeacher);
+router.get("/teachers", auth, getAllTeacher);
 
 export default router;

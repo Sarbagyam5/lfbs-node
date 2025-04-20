@@ -3,7 +3,6 @@ import uploadFile from "../../utils/file.js";
 
 async function addTeacher(data, image) {
   try {
-    console.log(image);
     if (image.length > 0) {
       const [file] = uploadFile([image]);
       return await Teacher.create({ ...data, imageUrL: file.url });
@@ -13,4 +12,12 @@ async function addTeacher(data, image) {
     throw error.message;
   }
 }
-export default { addTeacher };
+
+async function getAllTeacher() {
+  try {
+    return await Teacher.find();
+  } catch (error) {
+    throw { status: 500, message: "Server doesnt respond the teacher" };
+  }
+}
+export default { addTeacher, getAllTeacher };

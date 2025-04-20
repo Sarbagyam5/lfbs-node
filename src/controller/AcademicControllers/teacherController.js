@@ -28,4 +28,16 @@ async function addTeacher(req, res) {
   }
 }
 
-export { addTeacher };
+async function getAllTeacher(req, res) {
+  try {
+    const response = await teacherService.getAllTeacher();
+    const formatedTeacher = response.map((subject) => formatTeacher(subject));
+    res.json(formatedTeacher);
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "Couldn't Get teachers");
+  }
+}
+
+export { addTeacher, getAllTeacher };
