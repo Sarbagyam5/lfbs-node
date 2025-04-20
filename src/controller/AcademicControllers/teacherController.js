@@ -6,7 +6,8 @@ async function addTeacher(req, res) {
   if (!data.firstName) return res.status(400).send("Firstname is required");
   if (!data.lastName) return res.status(400).send("Lastname is required");
   if (!data.address) return res.status(400).send("Address is required");
-  if (!data.apointDate) return res.status(400).send("Apoint date is required");
+  if (!data.appointDate)
+    return res.status(400).send("Appoint date is required");
   if (!data.citizenShipNumber)
     return res.status(400).send("Citizenship number is required");
   if (!data.dateOfBirth)
