@@ -12,6 +12,7 @@ import {
   getAllSubject,
   updateSubjectById,
 } from "../controller/AcademicControllers/subjectController.js";
+import { addTeacher } from "../controller/AcademicControllers/teacherController.js";
 
 const router = express.Router();
 
@@ -25,5 +26,7 @@ router.get("/subjects", auth, getAllSubject);
 router.post("/subjects", auth, addSubject);
 router.put("/subjects/:id", auth, updateSubjectById);
 router.delete("/subjects/:id", auth, deleteSubjectById);
+//Teacher
+router.post("/teachers", auth, addTeacher);
 
 export default router;
