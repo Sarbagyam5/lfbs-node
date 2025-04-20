@@ -8,8 +8,6 @@ async function addTeacher(req, res) {
   if (!data.address) return res.status(400).send("Address is required");
   if (!data.appointDate)
     return res.status(400).send("Appoint date is required");
-  if (!data.citizenShipNumber)
-    return res.status(400).send("Citizenship number is required");
   if (!data.dateOfBirth)
     return res.status(400).send("Date of Birth is required");
   if (!data.designation)
@@ -20,6 +18,7 @@ async function addTeacher(req, res) {
   if (!data.email) return res.status(400).send("Email is required");
   try {
     const response = await teacherService.addTeacher(data, file);
+    res.json(response);
   } catch (error) {
     res.status(error.status || 500).send(error.message || "Server Error");
   }
