@@ -1,5 +1,6 @@
 function formatTeacher(data) {
   return {
+    id: data?._id,
     firstName: data?.firstName,
     lastName: data?.lastName,
     address: data?.address,
