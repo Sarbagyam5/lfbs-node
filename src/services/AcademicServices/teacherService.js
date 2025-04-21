@@ -1,3 +1,4 @@
+import { response } from "express";
 import Teacher from "../../models/AcademicModels/Teacher.js";
 import uploadFile from "../../utils/file.js";
 
@@ -6,7 +7,6 @@ async function addTeacher(data, image) {
     if (image) {
       const [file] = await uploadFile([image]);
       data = { ...data, imageUrl: file.url };
-      console.log(data);
       return await Teacher.create(data);
     }
     return await Teacher.create(data);
@@ -47,4 +47,30 @@ async function deleteTeacherById(id) {
     throw { status: 500, message: "Server error" };
   }
 }
-export default { addTeacher, getAllTeacher, deleteTeacherById, getTeacherById };
+
+async function updateTeacherById(data, image, id) {
+  try {
+    if (image) {
+      const [file] = await uploadFile([image]);
+      data = { ...data, imageUrl: file.url };
+      const response = await Teacher.findByIdAndUpdate(id, data);
+      if (!response)
+        throw { status: 400, message: "cant find the staff off the given id" };
+      return response;
+    }
+    const response = await Teacher.findByIdAndUpdate(id, data);
+    return response;
+  } catch (error) {
+    throw {
+      status: error.status || 500,
+      message: error.message || "Server error",
+    };
+  }
+}
+export default {
+  addTeacher,
+  getAllTeacher,
+  deleteTeacherById,
+  getTeacherById,
+  updateTeacherById,
+};
