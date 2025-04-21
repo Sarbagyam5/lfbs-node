@@ -31,7 +31,7 @@ async function addTeacher(req, res) {
 async function getAllTeacher(req, res) {
   try {
     const response = await teacherService.getAllTeacher();
-    const formatedTeacher = response.map((subject) => formatTeacher(subject));
+    const formatedTeacher = response.map((teacher) => formatTeacher(teacher));
     res.json(formatedTeacher);
   } catch (error) {
     res
