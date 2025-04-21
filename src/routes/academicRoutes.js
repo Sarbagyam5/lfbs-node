@@ -16,6 +16,7 @@ import {
   addTeacher,
   deleteTeacherById,
   getAllTeacher,
+  getTeacherById,
 } from "../controller/AcademicControllers/teacherController.js";
 
 const router = express.Router();
@@ -33,6 +34,7 @@ router.delete("/subjects/:id", auth, deleteSubjectById);
 //Teacher
 router.post("/teachers", auth, addTeacher);
 router.get("/teachers", auth, getAllTeacher);
+router.get("/teachers/:id", auth, getTeacherById);
 router.delete("/teachers/:id", auth, deleteTeacherById);
 
 export default router;

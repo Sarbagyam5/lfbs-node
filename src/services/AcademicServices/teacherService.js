@@ -19,7 +19,21 @@ async function getAllTeacher() {
   try {
     return await Teacher.find();
   } catch (error) {
-    throw { status: 500, message: "Server doesnt respond the teacher" };
+    throw { status: 500, message: "Server doesnt respond the teachers" };
+  }
+}
+
+async function getTeacherById(id) {
+  try {
+    const teacher = await Teacher.findById(id);
+    if (!teacher)
+      throw { status: 400, message: "No Teacher with the given Id found" };
+    return teacher;
+  } catch (error) {
+    throw {
+      status: error.status || 500,
+      message: error.message || "Server doesnt respond the teacher",
+    };
   }
 }
 
@@ -33,4 +47,4 @@ async function deleteTeacherById(id) {
     throw { status: 500, message: "Server error" };
   }
 }
-export default { addTeacher, getAllTeacher, deleteTeacherById };
+export default { addTeacher, getAllTeacher, deleteTeacherById, getTeacherById };
