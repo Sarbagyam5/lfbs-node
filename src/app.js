@@ -23,7 +23,7 @@ const upload = multer({
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://lfbs-school.vercel.app"],
     credentials: true,
   })
 );

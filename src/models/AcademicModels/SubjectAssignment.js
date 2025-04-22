@@ -6,8 +6,5 @@ const subjectAssignmentSchema = new mongoose.Schema({
   teacher: { type: mongoose.Schema.Types.ObjectId, ref: "Teacher" },
 });
 
-const SubjectAssignment = mongoose.model(
-  "SubjectAssignment",
-  subjectAssignmentSchema
-);
+mongoose.model("SubjectAssignment", subjectAssignmentSchema);
 export default subjectAssignmentSchema;
