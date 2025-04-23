@@ -19,6 +19,10 @@ import {
   getTeacherById,
   updateTeacherById,
 } from "../controller/AcademicControllers/teacherController.js";
+import {
+  addClassroom,
+  getAllClassroom,
+} from "../controller/AcademicControllers/addClassroom.js";
 
 const router = express.Router();
 
@@ -38,5 +42,9 @@ router.get("/teachers", auth, getAllTeacher);
 router.get("/teachers/:id", auth, getTeacherById);
 router.put("/teachers/:id", auth, updateTeacherById);
 router.delete("/teachers/:id", auth, deleteTeacherById);
+
+//Classroom
+router.post("/classrooms", auth, addClassroom);
+router.get("/classrooms", auth, getAllClassroom);
 
 export default router;

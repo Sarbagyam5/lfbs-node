@@ -23,7 +23,6 @@ const getAcademicYears = async (req, res) => {
     const formatedAcademicYears = academicYears.map((academicYear) =>
       formatAcademicYearData(academicYear)
     );
-    console.log(formatedAcademicYears);
     res.json(formatedAcademicYears);
   } catch (error) {
     res
