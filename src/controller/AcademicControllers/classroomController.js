@@ -27,4 +27,37 @@ const getClassroomByAcademicYearId = async (req, res) => {
   }
 };
 
-export { addClassroom, getClassroomByAcademicYearId };
+const updateClassroomById = async (req, res) => {
+  const data = req.body;
+  const id = req.params.id;
+  if (data.name == "") return res.status(400).send("Classroom is empty");
+  if (data.classTeacher == "")
+    return res.status(400).send("Class teacher is empty");
+  try {
+    const classroom = await classroomService.updateClassroomById(data, id);
+    res.json(classroom);
+  } catch (error) {
+    res
+      .status(error.status || 400)
+      .send(error.message || ` ${data.name}  cannot be updated`);
+  }
+};
+
+const deleteClassroomById = async (req, res) => {
+  const id = req.params.id;
+  if (!id) return res.status(400).send("Id is required");
+  try {
+    await classroomService.deleteClassroomById(id);
+    res.json("Deleted Successfully");
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .send(error.message || "Unable to delete the given classroom");
+  }
+};
+export {
+  addClassroom,
+  getClassroomByAcademicYearId,
+  updateClassroomById,
+  deleteClassroomById,
+};

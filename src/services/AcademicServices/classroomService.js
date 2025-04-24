@@ -25,4 +25,32 @@ async function getClassroomByAcademicYearId(id) {
     };
   }
 }
-export default { addClassroom, getClassroomByAcademicYearId };
+
+async function updateClassroomById(data, id) {
+  try {
+    return await Classroom.findByIdAndUpdate(id, data);
+  } catch (error) {
+    throw {
+      status: error.status || 400,
+      message: error.message || "Cant update the classroom in db",
+    };
+  }
+}
+
+async function deleteClassroomById(id) {
+  const existingClassroom = await Classroom.findById(id);
+
+  if (!existingClassroom)
+    throw { status: 404, message: "Classroom doesn't exist" };
+  try {
+    return await Classroom.findByIdAndDelete(id);
+  } catch (error) {
+    throw { status: 500, message: "Cant delete classroom in db" };
+  }
+}
+export default {
+  addClassroom,
+  getClassroomByAcademicYearId,
+  updateClassroomById,
+  deleteClassroomById,
+};
