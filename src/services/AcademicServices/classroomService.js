@@ -14,7 +14,9 @@ async function addClassroom(data) {
 
 async function getClassroomByAcademicYearId(id) {
   try {
-    const classrooms = await Classroom.find({ academicYear: id });
+    const classrooms = await Classroom.find({ academicYear: id }).populate(
+      "classTeacher"
+    );
     return classrooms;
   } catch (error) {
     throw {
