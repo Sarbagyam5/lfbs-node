@@ -21,8 +21,8 @@ import {
 } from "../controller/AcademicControllers/teacherController.js";
 import {
   addClassroom,
-  getAllClassroom,
-} from "../controller/AcademicControllers/addClassroom.js";
+  getClassroomByAcademicYearId,
+} from "../controller/AcademicControllers/classroomController.js";
 
 const router = express.Router();
 
@@ -45,6 +45,6 @@ router.delete("/teachers/:id", auth, deleteTeacherById);
 
 //Classroom
 router.post("/classrooms", auth, addClassroom);
-router.get("/classrooms", auth, getAllClassroom);
+router.get("/classrooms/academicYear/:id", auth, getClassroomByAcademicYearId);
 
 export default router;

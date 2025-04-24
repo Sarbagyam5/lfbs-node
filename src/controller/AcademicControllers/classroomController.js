@@ -15,9 +15,10 @@ const addClassroom = async (req, res) => {
   }
 };
 
-const getAllClassroom = async (req, res) => {
+const getClassroomByAcademicYearId = async (req, res) => {
+  const id = req.params.id;
   try {
-    const classRooms = await classroomService.getAllClassroom();
+    const classRooms = await classroomService.getClassroomByAcademicYearId(id);
     res.json(classRooms);
   } catch (error) {
     res
@@ -26,4 +27,4 @@ const getAllClassroom = async (req, res) => {
   }
 };
 
-export { addClassroom, getAllClassroom };
+export { addClassroom, getClassroomByAcademicYearId };

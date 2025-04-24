@@ -12,9 +12,9 @@ async function addClassroom(data) {
   }
 }
 
-async function getAllClassroom() {
+async function getClassroomByAcademicYearId(id) {
   try {
-    const classrooms = await Classroom.find();
+    const classrooms = await Classroom.find({ academicYear: id });
     return classrooms;
   } catch (error) {
     throw {
@@ -23,4 +23,4 @@ async function getAllClassroom() {
     };
   }
 }
-export default { addClassroom, getAllClassroom };
+export default { addClassroom, getClassroomByAcademicYearId };
