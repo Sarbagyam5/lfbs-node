@@ -27,9 +27,12 @@ async function addsubjectAssignment(data) {
   }
 }
 
-async function getSubjectAssignments() {
+async function getSubjectAssignments(academicYear, classroom) {
   try {
-    return await SubjectAssignment.find().populate("academicYear");
+    return await SubjectAssignment.find({
+      academicYear: academicYear,
+      classroom: classroom,
+    }).populate("subject");
   } catch (error) {
     throw {
       status: error.status || 500,
