@@ -9,7 +9,7 @@ const addSubjectAssignment = async (req, res) => {
   if (!classroom) return res.status(400).send("Classroom is required");
 
   try {
-    const response = await subjectAssignment.addsubjectAssignment(data);
+    const response = await subjectAssignment.addSubjectAssignment(data);
     res.json(response);
   } catch (error) {
     res

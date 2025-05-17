@@ -1,10 +1,10 @@
 import SubjectAssignment from "../../models/AcademicModels/SubjectAssignment.js";
 
-async function addsubjectAssignment(data) {
+async function addSubjectAssignment(data) {
   const { academicYear, subject, classroom } = data;
 
   try {
-    const existingAssignment = await SubjectAssignment.find({
+    const existingAssignment = await SubjectAssignment.findOne({
       academicYear,
       subject,
       classroom,
@@ -41,4 +41,4 @@ async function getSubjectAssignments(academicYear, classroom) {
   }
 }
 
-export default { addsubjectAssignment, getSubjectAssignments };
+export default { addSubjectAssignment, getSubjectAssignments };
