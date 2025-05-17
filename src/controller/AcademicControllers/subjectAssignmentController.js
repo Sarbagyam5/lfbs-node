@@ -34,10 +34,7 @@ const getSubjectAssignments = async (req, res) => {
       classroomId
     );
 
-    res.status(200).json({
-      success: true,
-      data: response,
-    });
+    res.status(200).json(response);
   } catch (error) {
     res.status(error.status || 500).json({
       success: false,
