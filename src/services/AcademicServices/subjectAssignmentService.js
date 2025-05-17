@@ -13,7 +13,7 @@ async function addSubjectAssignment(data) {
     if (existingAssignment.length > 0) {
       throw {
         status: 400,
-        message: "Subject already assigned",
+        message: `Subject ${subject} already assigned`,
       };
     }
 
@@ -22,7 +22,7 @@ async function addSubjectAssignment(data) {
   } catch (error) {
     throw {
       status: error.status || 500,
-      message: error.message || "Cant assign subject assigned in db",
+      message: error.message || `Cant assign  ${subject} assigned in db`,
     };
   }
 }
