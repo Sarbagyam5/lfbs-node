@@ -10,7 +10,7 @@ async function addSubjectAssignment(data) {
       classroom,
     });
 
-    if (existingAssignment.length > 0) {
+    if (existingAssignment) {
       throw {
         status: 400,
         message: `Subject ${subject} already assigned`,
