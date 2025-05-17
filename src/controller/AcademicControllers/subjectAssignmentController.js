@@ -2,20 +2,29 @@ import subjectAssignment from "../../services/AcademicServices/subjectAssignment
 
 const addSubjectAssignment = async (req, res) => {
   const data = req.body;
-  const { academicYear, subject, classroom } = data;
 
-  if (!academicYear) return res.status(400).send("Academic year is required");
-  if (!subject) return res.status(400).send("Subject is required");
-  if (!classroom) return res.status(400).send("Classroom is required");
+  const results = [];
 
-  try {
-    const response = await subjectAssignment.addSubjectAssignment(data);
-    res.json(response);
-  } catch (error) {
-    res
-      .status(error.status || 400)
-      .send(error.message || "Can't assign subject to the class");
+  for (const element of data) {
+    const { academicYear, subject, classroom } = element;
+
+    if (!academicYear || !subject || !classroom) {
+      return res
+        .status(400)
+        .send("Academic year, subject, and classroom are required");
+    }
+
+    try {
+      const response = await subjectAssignment.addSubjectAssignment(element);
+      results.push(response);
+    } catch (error) {
+      return res
+        .status(error.status || 400)
+        .send(error.message || `Can't assign ${subject} to the class`);
+    }
   }
+
+  res.json(results);
 };
 
 const getSubjectAssignments = async (req, res) => {
