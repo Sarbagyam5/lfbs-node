@@ -41,4 +41,35 @@ async function getSubjectAssignments(academicYear, classroom) {
   }
 }
 
-export default { addSubjectAssignment, getSubjectAssignments };
+async function deleteSubjectAssignement(
+  subjectId,
+  academicYearId,
+  classroomId
+) {
+  const response = await SubjectAssignment.find({
+    academicYear: academicYearId,
+    classroom: classroomId,
+    subject: subjectId,
+  });
+  if (!response)
+    throw { status: 400, message: "can't find the assigned subject" };
+  try {
+    await SubjectAssignment.findOneAndDelete({
+      academicYear: academicYearId,
+      classroom: classroomId,
+      subject: subjectId,
+    });
+    return { success: true, message: "Deleted successfully" };
+  } catch (error) {
+    throw {
+      status: error.status || 500,
+      message: error.message || "Deletion error",
+    };
+  }
+}
+
+export default {
+  addSubjectAssignment,
+  getSubjectAssignments,
+  deleteSubjectAssignement,
+};

@@ -43,4 +43,25 @@ const getSubjectAssignments = async (req, res) => {
   }
 };
 
-export { addSubjectAssignment, getSubjectAssignments };
+async function deleteSubjectAssignement(req, res) {
+  const { subjectId, academicYearId, classroomId } = req.body;
+  console.log(req.body);
+  try {
+    await subjectAssignment.deleteSubjectAssignement(
+      subjectId,
+      academicYearId,
+      classroomId
+    );
+    res.json("Deleted Succefully");
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .json({ message: error.message || "Cant delete the subject" });
+  }
+}
+
+export {
+  addSubjectAssignment,
+  getSubjectAssignments,
+  deleteSubjectAssignement,
+};
