@@ -29,6 +29,7 @@ import {
   addSubjectAssignment,
   deleteSubjectAssignement,
   getSubjectAssignments,
+  updatesubjectAssignement,
 } from "../controller/AcademicControllers/subjectAssignmentController.js";
 
 const router = express.Router();
@@ -65,4 +66,6 @@ router.delete(
   deleteSubjectAssignement
 );
 
+//Subject-TeacherAssignment
+router.put("teachers/assignSubject/:id", auth, updatesubjectAssignement);
 export default router;

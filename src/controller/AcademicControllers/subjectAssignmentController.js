@@ -45,7 +45,6 @@ const getSubjectAssignments = async (req, res) => {
 
 async function deleteSubjectAssignement(req, res) {
   const { subjectId, academicYearId, classroomId } = req.body;
-  console.log(req.body);
   try {
     await subjectAssignment.deleteSubjectAssignement(
       subjectId,
@@ -60,8 +59,29 @@ async function deleteSubjectAssignement(req, res) {
   }
 }
 
+async function updatesubjectAssignement(req, res) {
+  const assignSubjectId = req.params.id;
+  const { teacherId } = req.body;
+  if (!assignSubjectId || !teacherId)
+    return res
+      .status(400)
+      .send("Teacher ID or Subject Assignment ID is missing");
+  try {
+    const response = await subjectAssignment.updatesubjectAssignement(
+      assignSubjectId,
+      teacherId
+    );
+    res.json(response);
+  } catch (error) {
+    res
+      .status(error.status || 500)
+      .json({ message: error.message || "Cant add teacher for the subject" });
+  }
+}
+
 export {
   addSubjectAssignment,
   getSubjectAssignments,
   deleteSubjectAssignement,
+  updatesubjectAssignement,
 };

@@ -67,9 +67,25 @@ async function deleteSubjectAssignement(
     };
   }
 }
-
+async function updatesubjectAssignement(id, teacherId) {
+  try {
+    return await SubjectAssignment.findByIdAndUpdate(
+      id,
+      { teacher: teacherId },
+      { new: true }
+    )
+      .populate("subject")
+      .populate("teacher");
+  } catch (error) {
+    throw {
+      status: error.status || 500,
+      message: error.message || "Cant get assign teacher to the subject",
+    };
+  }
+}
 export default {
   addSubjectAssignment,
   getSubjectAssignments,
   deleteSubjectAssignement,
+  updatesubjectAssignement,
 };
