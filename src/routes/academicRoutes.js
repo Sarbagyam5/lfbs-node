@@ -67,5 +67,5 @@ router.delete(
 );
 
 //Subject-TeacherAssignment
-router.put("teachers/assignSubject/:id", auth, updatesubjectAssignement);
+router.put("/teachers/assignSubject/:id", auth, updatesubjectAssignement);
 export default router;

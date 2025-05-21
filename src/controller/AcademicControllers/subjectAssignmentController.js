@@ -62,6 +62,7 @@ async function deleteSubjectAssignement(req, res) {
 async function updatesubjectAssignement(req, res) {
   const assignSubjectId = req.params.id;
   const { teacherId } = req.body;
+
   if (!assignSubjectId || !teacherId)
     return res
       .status(400)
