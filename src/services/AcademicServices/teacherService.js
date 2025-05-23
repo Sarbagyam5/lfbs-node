@@ -1,4 +1,3 @@
-import { response } from "express";
 import Teacher from "../../models/AcademicModels/Teacher.js";
 import uploadFile from "../../utils/file.js";
 

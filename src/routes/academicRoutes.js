@@ -31,6 +31,7 @@ import {
   getSubjectAssignments,
   updatesubjectAssignement,
 } from "../controller/AcademicControllers/subjectAssignmentController.js";
+import { addStudent } from "../controller/AcademicControllers/studentControllers.js";
 
 const router = express.Router();
 
@@ -50,6 +51,9 @@ router.get("/teachers", auth, getAllTeacher);
 router.get("/teachers/:id", auth, getTeacherById);
 router.put("/teachers/:id", auth, updateTeacherById);
 router.delete("/teachers/:id", auth, deleteTeacherById);
+
+//Students
+router.post("/students", auth, addStudent);
 
 //Classroom
 router.post("/classrooms", auth, addClassroom);
