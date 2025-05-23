@@ -9,9 +9,9 @@ async function addStudent(req, res) {
     return res.status(400).send("Appoint date is required");
   if (!data.dob) return res.status(400).send("Date of Birth is required");
   if (!data.gender) return res.status(400).send("Gender is required");
-  if (!data.classroomName)
-    return res.status(400).send("Phone number is required");
-  if (!data.academicYear) return res.status(400).send("Email is required");
+  if (!data.classroom) return res.status(400).send("Classroom id is required");
+  if (!data.academicYear)
+    return res.status(400).send("Academic year is required");
 
   try {
     const response = await studentService.addStudent(data, file || "");
