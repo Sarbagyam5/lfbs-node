@@ -18,7 +18,7 @@ async function addStudent(data, image) {
 
 async function getAllStudents() {
   try {
-    return await Student.find();
+    return await Student.find().populate("classroom").populate("academicYear");
   } catch (error) {
     throw { status: 500, message: "Server doesnt respond the students" };
   }

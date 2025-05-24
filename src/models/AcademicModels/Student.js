@@ -6,6 +6,7 @@ const studentSchema = new mongoose.Schema({
   admissionDate: { type: Date, required: true },
   dob: { type: Date, required: true },
   gender: { type: String, required: true },
+  rollNo: Number,
   phone: String,
   email: String,
   classroom: {
