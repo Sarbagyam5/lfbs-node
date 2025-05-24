@@ -16,4 +16,12 @@ async function addStudent(data, image) {
   }
 }
 
-export default { addStudent };
+async function getAllStudents() {
+  try {
+    return await Student.find();
+  } catch (error) {
+    throw { status: 500, message: "Server doesnt respond the students" };
+  }
+}
+
+export default { addStudent, getAllStudents };
